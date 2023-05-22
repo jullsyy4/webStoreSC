@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Online store</title>
+{% endblock %}
+
+{% block body %}
+ <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Pricing</h1>
+      <p class="fs-5 text-body-secondary">Here you can see the prices and choose your course.</p>
+    </div>
+    {% if items|length > 0 %}
+      <main>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mx-auto">
+          {% for el in items %}
+            <div class="col-md-4">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">{{ el.title }}</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ el.price }}<small class="text-body-secondary fw-light">UAH</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>{{ el.description }}</li>
+                </ul>
+                  <a href="/buy/{{ el.id }}" class="w-100 btn btn-lg btn-outline-primary">Buy</a>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+      </main>
+    {% else %}
+    <p>Sorry, we don't have any courses available yet((</p>
+    {% endif %}
+{% endblock %}
